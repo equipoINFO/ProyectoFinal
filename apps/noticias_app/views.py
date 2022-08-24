@@ -4,4 +4,10 @@ from django.http import HttpResponse
 # Create your views here.
 # definir como función 
 def index(request):
-	return HttpResponse("Hola Mundo!")
+	return render(request, 'nosotros.html')
+
+#def nosotros(request):
+   # return render(request, 'nosotros.html')
+
+#def base(request):
+  #  return render(request, 'base.html')

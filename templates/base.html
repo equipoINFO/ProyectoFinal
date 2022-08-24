@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/favicons/apple-icon-57x57.png' %}">
+	<link rel="apple-touch-icon" sizes="60x60" href="{% static 'images/favicons/apple-icon-60x60.png' %}">
+	<link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/favicons/apple-icon-72x72.png' %}">
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/favicons/apple-icon-76x76.png' %}">
+	<link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/favicons/apple-icon-114x114.png' %}">
+	<link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/favicons/apple-icon-120x120.png' %}">
+	<link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/favicons/apple-icon-144x144.png' %}">
+	<link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/favicons/apple-icon-152x152.png' %}">
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-icon-180x180.png' %}">
+	<link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicons/android-icon-192x192.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicons/favicon-96x96.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+	<link rel="manifest" href="{% static 'images/favicons/manifest.json' %}">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<title>Memorias de Nuestro Pueblo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<header
+		class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+		<a href="#" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+			<img src="{% static 'images/logo.png' %}" width="150" height="80" alt="logo-ong">
+		</a>
+
+		<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+			<li><a href="#" class="nav-link px-2 link-dark">Inicio</a></li>
+			<li><a href="#" class="nav-link px-2 link-dark">Nosotros</a></li>
+			<li><a href="#" class="nav-link px-2 link-dark">Noticias</a></li>
+			<li><a href="#" class="nav-link px-2 link-dark">Eventos</a></li>
+			<li><a href="#" class="nav-link px-2 link-dark">Recursos</a></li>
+			<li><a href="#" class="nav-link px-2 link-secondary">Contacto</a></li>
+		</ul>
+
+		<div class="col-md-3 text-end">
+			<a href="#" class="btn btn-primary">Login</a>
+		</div>
+	</header>
+
+	{% block contenido %}
+
+	{% endblock contenido %}
+
+	<footer class="text-center text-white">
+		<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Nosotros</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Noticias</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Eventos</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Recursos</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contacto</a></li>
+		</ul>
+		<a href="#" class="d-flex align-items-center justify-content-center link-dark">
+			<img src="{% static 'images/logo.png' %}" width="150" height="80" alt="logo-ong">
+		</a>
+		<div class="container p-4 pb-0">
+			<section class="mb-4">
+				<a href="https://www.facebook.com/fundacionmemorias" target="_blank" role="button"><i
+						class="bi bi-facebook mx-1 text-secondary" style="font-size: 1.5em"></i></a>
+				<a href="https://www.instagram.com/fundacionmemoriasfontana" target="_blank"><i
+						class="bi bi-instagram mx-1 text-secondary" style="font-size: 1.5em"></i></a>
+			</section>
+		</div>
+		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+			© 2022 Copyright: Memorias de Nuestro Pueblo
+		</div>
+	</footer>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
