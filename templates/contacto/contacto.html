@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<section class="ftco-section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center mb-5">
+				<h1 class="heading-section text-uppercase">Contacto</h1>
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="wrapper">
+					<div class="row no-gutters mb-5 bg-light">
+						<div class="col-md-7">
+							<div class="contact-wrap w-100 p-md-5 p-4">
+								<h3 class="mb-4">Envíanos tu consulta</h3>
+								<div id="form-message-warning" class="mb-4"></div>
+								<div id="form-message-success" class="mb-4">
+									Todos nuestros canales de comunicación están a tu disposición
+								</div>
+								<form method="POST" id="contactForm" name="contactForm" class="contactForm">
+									{% csrf_token %}
+									<div class="row">
+										<div class="col-md-6 mt-3">
+											<div class="form-group">
+												<label class="label ms-1 mb-2" for="name">Nombre</label>
+												<input type="text" class="form-control" name="name" id="name"
+													placeholder="Nombre" required>
+											</div>
+										</div>
+										<div class="col-md-6 mt-3">
+											<div class="form-group">
+												<label class="label ms-1 mb-2" for="email">Email</label>
+												<input type="email" class="form-control" name="email" id="email"
+													placeholder="Email" required>
+											</div>
+										</div>
+										<div class="col-md-12 mt-3">
+											<div class="form-group">
+												<label class="label ms-1 mb-2" for="subject">Motivo</label>
+												<input type="text" class="form-control" name="subject" id="subject"
+													placeholder="Motivo de tu consulta" required>
+											</div>
+										</div>
+										<div class="col-md-12 mt-3">
+											<div class="form-group">
+												<label class="label ms-1 mb-2" for="#">Mensaje</label>
+												<textarea name="message" class="form-control" id="message" cols="30"
+													rows="4" placeholder="Escribí tu mensaje" required></textarea>
+											</div>
+										</div>
+										<div class="col-md-12 mt-4">
+											<div class="form-group">
+												<input type="submit" value="Enviar Mensaje" class="btn btn-primary">
+												<div class="submitting"></div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="col-md-5 p-md-5 p-4 d-flex align-items-stretch">
+							<iframe class="border border-secondary"
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1052.9323951182812!2d-59.0315532640216!3d-27.418523159360827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450b028a30bf01%3A0x8cc0b1c2a708a8de!2sFundaci%C3%B3n%20Memorias%20de%20Nuestro%20Pueblo!5e0!3m2!1ses-419!2sar!4v1660059316065!5m2!1ses-419!2sar"
+								width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md my-3">
+							<div class="dbox w-100 text-center">
+								<div class="icon d-flex align-items-center justify-content-center">
+									<i class="bi bi-geo-alt" style="font-size: 1.5em"></i>
+								</div>
+								<div class="text">
+									<h5>Dirección:</h5>
+									<p>Santiago del Estero 4535, H3514 Fontana, Chaco</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md my-3">
+							<div class="dbox w-100 text-center">
+								<div class="icon d-flex align-items-center justify-content-center">
+									<i class="bi bi-telephone" style="font-size: 1.5em"></i>
+								</div>
+								<div class="text">
+									<h5>Teléfono:</h5>
+									<a href="tel://0362 439-5069">
+										0362 439-5069</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-md my-3">
+							<div class="dbox w-100 text-center">
+								<div class="icon d-flex align-items-center justify-content-center">
+									<i class="bi bi-envelope" style="font-size: 1.5em"></i>
+								</div>
+								<div class="text">
+									<h5>Email:</h5>
+									<a href="mailto:
+											fundacionmemorias@gmail.com">
+										fundacionmemorias@gmail.com</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+{% endblock contenido %}
