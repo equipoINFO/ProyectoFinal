@@ -1,5 +1,8 @@
-Blog2022/settings/local.py
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
 db.sqlite3
-ProyectoFinal\apps\noticias_app\migrations
-apps\noticias_app\migrations
-__pycache__
+#comentarios
+ProyectoFinal/Blog2022/settings/local.py
