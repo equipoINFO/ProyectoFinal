@@ -1,4 +1,3 @@
-from asyncio.windows_events import NULL
 from distutils.command.upload import upload
 from pickletools import UP_TO_NEWLINE
 from pyexpat import model
