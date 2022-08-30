@@ -21,6 +21,7 @@ from django.conf import settings
 from apps.contacto_app import views
 from apps.noticias_app import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # vista basada en función <-- borrar al terminar
@@ -28,6 +29,9 @@ urlpatterns = [
     # path('', views.base, name='base')  <-- borrar al terminar
     path('', views.index, name='index'),
     path('contacto', views.contacto, name='contacto'),
+    path('nosotros', views.nosotros, name='nosotros'),
+    # path('', views.base, name='base')
+
     path('noticias', views.noticias, name='noticias'),
     path('noticias/<int:id>/', views.noticiasdetalle, name='noticiasdetalle'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)
