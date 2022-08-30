@@ -23,3 +23,6 @@ def contacto(request):
         contacto.save()
         return render(request, 'contacto/contactos.html')
     return render(request, 'contacto/contacto.html')
+
+def nosotros(request):
+    return render(request, 'nosotros.html')

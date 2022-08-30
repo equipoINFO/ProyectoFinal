@@ -18,12 +18,13 @@ from django.urls import include, path
 from apps.noticias_app import views
 from apps.contacto_app import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # vista basada en función
     #siempre hay q llamar aca para que pida la solicitud de info en la parte de 'views'
     path('', views.index, name='index'),
     path('contacto', views.contacto, name='contacto'),
-    path('', views.index, name='nosotros'),
+    path('nosotros', views.nosotros, name='nosotros'),
   # path('', views.base, name='base')
 ]
