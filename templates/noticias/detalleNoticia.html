@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<section class="container">
+
+    <h1 style="margin-top: 15px ; margin-bottom: 15px"> {{ noticia.titulo }}</h1>
+    
+        <center><img src="{{MEDIA_ROOT}}/{{noticia.img}}" width="100%" alt=""></center>
+    
+        <div class="date" style="margin-bottom: 15px">{{ noticia.creado }}</div>
+        <div class="container bg-light">
+            <p>
+            {{ noticia.contenido|safe|linebreaksbr }}
+            </p>
+        </div>
+    
+
+
+
+</section>
+{% endblock contenido %}
