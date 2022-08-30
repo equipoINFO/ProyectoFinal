@@ -17,17 +17,18 @@ from django.utils import timezone
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
 
+    def __str__ (self):
+        return self.nombre
 
 class Noticia(models.Model):
     autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=255)
     contenido = models.TextField()
-    img = models.ImageField(null=True, blank=True, upload_to='img/noticias',
-                            help_text='seleccione una imagen para mostrar')
+    img = models.ImageField(null=True, blank=True, upload_to='img/noticias', help_text='seleccione una imagen para mostrar')
     creado = models.DateTimeField(default=timezone.now)
     modificado = models.DateTimeField(auto_now=True)
-    pubicado = models.DateTimeField(blank=True, null=True)
-    category = models.ManyToManyField('Categoria', related_name='noticias')
+    publicado = models.DateTimeField(blank=True, null=True)
+    categorias = models.ManyToManyField('Categoria', related_name='noticias')
 
     def publicarNoticia(self):
         self.publicado = datetime.now()
@@ -36,10 +37,8 @@ class Noticia(models.Model):
     def comentariosAprobados(self):
         return self.comentarios.filter(aprobados=True)
 
-
 class Comentario(models.Model):
-    noticia = models.ForeignKey(
-        'Noticia', related_name='comentarios', on_delete=models.CASCADE)
+    noticia = models.ForeignKey('Noticia', related_name='comentarios', on_delete=models.CASCADE)
     autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     cuerpo_comentario = models.TextField()
     creado = models.DateTimeField(default=timezone.now)

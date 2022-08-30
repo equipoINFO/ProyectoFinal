@@ -1,4 +1,3 @@
 Blog2022/settings/local.py
 db.sqlite3
-ProyectoFinal\apps\noticias_app\migrations
-apps\noticias_app\migrations
+__pycache__
