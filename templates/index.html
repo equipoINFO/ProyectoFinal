@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<main>
+
+<!--Carrusel-->
+<div class="container">
+   <hr class="featurette-divider">
+   <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/carousel/fundacion1.jpg' %}" width="100%" height="500px" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/carousel/fundacion2.jpg' %}" width="100%" height="500px" alt="">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/carousel/fundacion3.jpg' %}" width="100%" height="500px" alt="">  
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>
+<!-- Contenido -->
+
+<div class="container bg-ligth">
+
+   <section>
+      <article class="p-3 m-0 border-0 bd-example">
+         
+         <header id="header" class="card-header bg-transparent border-success">
+            <p class="fs-2">Noticias</p>
+            <hr class="featurette-divider">
+            <div class=" d-grid gap-2 justify-content-end">
+
+               <a class="btn btn-primary" aria-current="page" href="{% url 'noticias' %}">Ver Mas</a>
+
+            </div>
+
+
+         </header>
+      </section> 
+      <section>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+               {% for noticia in noticias %}
+                  <div class="col">
+                     <div class="card h-100">
+                        <img src="{{MEDIA_ROOT}}{{noticia.img}}" class="card-img-top" alt="Nature" width="100%" height="225">
+                        <div class="card-body">
+                           <h5 class="card-title">{{noticia.titulo}}</h5>
+                           <p class="card-text ">{{noticia.contenido|truncatechars:150}} </p>
+                        </div>
+                        <div class="card-footer">
+                           <small class="text-muted">{{noticia.publicado}}</small>
+                        </div>
+                     </div>
+                  </div>
+               {% endfor %}
+         </div>
+      </article>
+
+   </section>
+</div>
+   <section class="p-3 m-0 border-0 bd-example">
+      <div class="p-5 mb-4 bg-secondary bg-opacity-10 rounded-3 text-center">
+         <div class="container-fluid py-5">
+            <h5 class=" fw-bold">Desarrollamos actividades culturales y educativas.</h5>
+            <div class="lh-1">
+               <p class="text-center">Propiciamos acciones con el fin de conservar el Patrimonio cultural</p>
+               <p class="text-center">inmaterial y material como el arquitectónico y todo acervo relativo al</p>
+               <p class="text-center">patrimonio cultural y natural de Fontana, Chaco.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+   <div class="container bg-ligth">
+   <section>
+      <article class="p-3 m-0 border-0 bd-example">
+         
+         <header id="header" class="card-header bg-transparent border-success">
+            <p class="fs-2">Eventos</p>
+            <hr class="featurette-divider">
+            <div class=" d-grid gap-2 justify-content-end">
+
+               <a class="btn btn-primary" aria-current="page" href="{% url 'eventos' %}">Ver Mas</a>
+
+            </div>
+
+
+         </header>
+      </section> 
+      <section>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+               {% for evento in eventos %}
+                  <div class="col">
+                     <div class="card h-100">
+                        <img src="{{MEDIA_ROOT}}{{evento.img}}" class="card-img-top" alt="Nature" width="100%" height="225">
+                        <div class="card-body">
+                           <h5 class="card-title">{{evento.titulo}}</h5>
+                           <p class="card-text ">{{evento.contenido|truncatechars:140}} </p>
+                        </div>
+                        <div class="card-footer">
+                           <small class="text-muted">{{evento.publicado}}</small>
+                        </div>
+                     </div>
+                  </div>
+               {% endfor %}
+         </div>
+      </article>
+      <hr class="featurette-divider">
+   </section>
+</div>
+</div>
+
+</main>
+{% endblock %}
+
+

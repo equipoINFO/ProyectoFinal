@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from apps.contacto_app import views
 from apps.noticias_app import views
+from apps.eventos_app import views
 
 
 urlpatterns = [
@@ -27,11 +28,11 @@ urlpatterns = [
     # vista basada en función <-- borrar al terminar
     #siempre hay q llamar aca para que pida la solicitud de info en la parte de 'views' <-- borrar al terminar
     # path('', views.base, name='base')  <-- borrar al terminar
-    path('', views.index, name='index'),
+    path('inicio', views.index, name='index'),
     path('contacto', views.contacto, name='contacto'),
     path('nosotros', views.nosotros, name='nosotros'),
-    # path('', views.base, name='base')
-
+    path('eventos', views.eventos, name='eventos'),
+    path('eventos/<int:id>/', views.eventosdetalle, name='eventosdetalle'),
     path('noticias', views.noticias, name='noticias'),
     path('noticias/<int:id>/', views.noticiasdetalle, name='noticiasdetalle'),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)

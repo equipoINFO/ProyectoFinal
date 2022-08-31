@@ -10,6 +10,7 @@
       line-height: var(--bs-body-line-height);
       color: var(--bs-body-color);
       text-align: var(--bs-body-text-align);">Últimas Noticias</h2>
+      <hr class="featurette-divider">
         <section>
           <div class="album py-5 bg-light">
             <div class="container">
@@ -23,7 +24,7 @@
                       <h3 class="mb-0">{{noticia.titulo}}</h3>
                       <div class="mb-1 text-muted">{{ noticia.creado }}</div>
                       <h6 class="mb-0">{{noticia.categorias}}</h6>
-                      <p class="card-text text-truncate">{{noticia.contenido}}</p>                      
+                      <p class="card-text">{{noticia.contenido|truncatechars:140}}</p>                      
                       <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                           <a href="{% url 'noticiasdetalle' id=noticia.id %}" class="stretched-link">Continuar leyendo</a>
@@ -35,5 +36,6 @@
                 {% endfor %}
           </div>
         </section>
+        <hr class="featurette-divider">
       </main>
 {% endblock contenido %}

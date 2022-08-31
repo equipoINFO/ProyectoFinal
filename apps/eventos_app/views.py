@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Evento,Categoria
 from django.http.response import Http404
-from .models import Contacto
-from apps.eventos_app.models import Evento
 from apps.noticias_app.models import Noticia, Comentario, Categoria
+from apps.contacto_app.models import Contacto
 
 # Create your views here.
-
 
 def index(request):
     lista_noticias = Noticia.objects.all().order_by('-creado')[:3]
@@ -33,9 +31,6 @@ def contacto(request):
         return render(request, 'contacto/contactos.html')
     return render(request, 'contacto/contacto.html')
 
-def nosotros(request):
-    return render(request, 'nosotros.html')
-
 def eventos(request):
     lista_eventos = Evento.objects.all().order_by('fecha')
     context = {
@@ -57,6 +52,8 @@ def eventosdetalle(request, id):
 
     return render (request, 'detalleEvento.html',context)
 
+def nosotros(request):
+        return render(request, 'nosotros.html')
 
 def noticias(request):
     lista_noticias = Noticia.objects.all().order_by('creado')

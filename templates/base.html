@@ -39,7 +39,7 @@
 	<header>
 		<nav class="navbar navbar-expand-lg bg-light rounded" aria-label="Eleventh navbar example">
 			<div class="container">
-				<a href="#" class="d-flex align-items-center col-md-auto mb-2 mb-md-0">
+				<a href="{% url 'index' %}" class="d-flex align-items-center col-md-auto mb-2 mb-md-0">
 					<img src="{% static 'images/logo.png' %}" width="150" height="80" alt="logo-ong">
 				</a>
 				<button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
@@ -50,15 +50,16 @@
 
 				<div class="navbar-collapse collapse" id="navbarsExample09">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-						<li><a href="#" class="nav-link px-2 link-dark">Inicio</a></li>
-						<li><a href="{% url 'nosotros' %}" class="nav-link px-2 link-dark">Nosotros</a></li>
-						<li><a href="{% url 'noticias' %}" class="nav-link px-2 link-dark">Noticias</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">Eventos</a></li>
-						<li><a href="#" class="nav-link px-2 link-dark">Recursos</a></li>
-						<li><a href="{% url 'contacto' %}" class="nav-link px-2 link-dark">Contacto</a></li>
+						<li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2">Inicio</a></li>
+						<li class="nav-item"><a href="{% url 'nosotros' %}" class="nav-link px-2">Nosotros</a></li>
+						<li class="nav-item"><a href="{% url 'noticias' %}" class="nav-link px-2">Noticias</a></li>
+						<li class="nav-item"><a href="{% url 'eventos' %}" class="nav-link px-2">Eventos</a></li>
+						<li class="nav-item"><a href="#" class="nav-link px-2">Recursos</a></li>
+						<li class="nav-item"><a href="{% url 'contacto' %}" class="nav-link px-2">Contacto</a></li>
 					</ul>
-					<div class="col-md-auto">
-						<a href="#" class="btn btn-primary">Iniciar sesión</a>
+					<div class="col-md-3">
+						<button type="button" class="btn btn-outline-primary me-2">Iniciar Sesión</button>
+						<button type="button" class="btn btn-primary">Registrarse</button>
 					</div>
 				</div>
 			</div>
@@ -71,14 +72,14 @@
 
 	<footer class="text-center text-white bg-light">
 		<ul class="nav justify-content-center border-bottom pb-3 mb-3">
-			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Inicio</a></li>
+			<li class="nav-item"><a href="{% url 'index' %}" class="nav-link px-2 text-muted">Inicio</a></li>
 			<li class="nav-item"><a href="{% url 'nosotros' %}" class="nav-link px-2 text-muted">Nosotros</a></li>
 			<li class="nav-item"><a href="{% url 'noticias' %}" class="nav-link px-2 text-muted">Noticias</a></li>
-			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Eventos</a></li>
+			<li class="nav-item"><a href="{% url 'eventos' %}" class="nav-link px-2 text-muted">Eventos</a></li>
 			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Recursos</a></li>
 			<li class="nav-item"><a href="{% url 'contacto' %}" class="nav-link px-2 text-muted">Contacto</a></li>
 		</ul>
-		<a href="#" class="d-flex align-items-center justify-content-center link-dark">
+		<a href="{% url 'index' %}" class="d-flex align-items-center justify-content-center link-dark">
 			<img src="{% static 'images/logo.png' %}" width="150" height="80" alt="logo-ong">
 		</a>
 		<div class="container p-4 pb-0">

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<section class="container">
+
+    <h1 style="margin-top: 15px ; margin-bottom: 15px"> {{ evento.titulo }}</h1>
+    
+        <center><img src="{{MEDIA_ROOT}}/{{evento.img}}" width="100%" alt=""></center>
+    
+        <div class="date" style="margin-bottom: 15px">{{ evento.fecha }}</div>
+        <div class="container bg-light">
+            <p>
+            {{ evento.contenido|safe|linebreaksbr }}
+            </p>
+            <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {{evento.categorias}}</h4>
+            <h4 class="mb-1"><span class="fw-bold">Lugar:</span> {{evento.lugar}}</h4>
+            <h4 class="mb-1"><span class="fw-bold">Modalidad:</span> {{evento.modalidad}}</h4>
+            <h4 class="mb-1"><span class="fw-bold">Precio:</span> {{evento.precio}}</h4>
+        </div>
+    
+
+
+    <hr class="featurette-divider">
+</section>
+{% endblock contenido %}

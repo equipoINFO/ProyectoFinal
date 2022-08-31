@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<main class="container">
+<h2 style="
+font-family: var(--bs-body-font-family);
+font-size: 30px;
+font-weight: var(--bs-body-font-weight);
+line-height: var(--bs-body-line-height);
+color: var(--bs-body-color);
+text-align: var(--bs-body-text-align);">Agenda de Eventos</h2>
+
+<hr class="featurette-divider">
+<div class="container bg-light">
+
+    
+    {% for evento in eventos %}
+    <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+        <h3 class="mb-0">{{evento.titulo}}</h3>
+        <div class="mb-1 text-muted"><span class="fw-bold">Fecha:</span> {{evento.fecha}}</div>
+        <p class="lead">{{evento.contenido|truncatechars:140}}</p>
+        <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {{evento.categorias}}</h4>
+        <h4 class="mb-1"><span class="fw-bold">Lugar:</span> {{evento.lugar}}</h4>
+        <h4 class="mb-1"><span class="fw-bold">Modalidad:</span> {{evento.modalidad}}</h4>
+        <h4 class="mb-1"><span class="fw-bold">Precio:</span> {{evento.precio}}</h4>
+        <div class="btn-group">
+            <a href="{% url 'eventosdetalle' id=evento.id %}" class="stretched-link">Detalles</a>
+        </div>
+    </div>
+    <div class="col-md-5 order-md-1">
+        <img src="{{MEDIA_ROOT}}{{evento.img}}" width="100%" height="300" alt="">     
+    </div>
+    </div>
+    <hr class="featurette-divider">
+    {% endfor %}
+    
+</div>
+</div>
+</main>
+{% endblock contenido %}
