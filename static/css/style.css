@@ -32,3 +32,11 @@
 .ftco-section {
 	padding: 7em 0;
 }
+
+a[href$='Detalles']{
+    background-color: aqua;
+}
+
+a:hover [href=''] {
+	color: #0f0;
+}

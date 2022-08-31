@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.noticias_app',
-    'apps.contacto_app'
+    'apps.contacto_app',
+    'apps.eventos_app',
 ]
 
 MIDDLEWARE = [
@@ -58,11 +59,12 @@ ROOT_URLCONF = 'Blog2022.urls'
 TEMPLATE_DIR = os.path.join(os.path.dirname(BASE_DIR), 'templates')
 TEMPLATE_NOTICIAS = os.path.join(os.path.dirname(BASE_DIR), 'templates/noticias')
 TEMPLATE_CONTACTO = os.path.join(os.path.dirname(BASE_DIR), 'templates/contacto')
+TEMPLATE_EVENTOS = os.path.join(os.path.dirname(BASE_DIR), 'templates/eventos')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,TEMPLATE_NOTICIAS,TEMPLATE_CONTACTO],
+        'DIRS': [TEMPLATE_DIR,TEMPLATE_NOTICIAS,TEMPLATE_CONTACTO, TEMPLATE_EVENTOS],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
