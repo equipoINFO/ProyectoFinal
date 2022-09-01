@@ -8,7 +8,7 @@ from django.utils import timezone
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
 
-    def __string__ (self):
+    def __str__ (self):
         return self.nombre
 
 class Evento(models.Model):

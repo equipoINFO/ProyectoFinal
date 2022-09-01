@@ -1,0 +1,81 @@
+{% load static %}
+<html lang="es">
+    
+    <head>
+        
+        <meta charset="utf-8">
+        
+        <title> Formulario de Acceso </title>    
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Videojuegos & Desarrollo">
+        <meta name="description" content="Muestra de un formulario de acceso en HTML y CSS">
+        <meta name="keywords" content="Formulario Acceso, Formulario de LogIn">
+        
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Overpass&display=swap" rel="stylesheet">
+        
+        <!-- Link hacia el archivo de estilos css -->
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+        
+        <style type="text/css">
+            
+        </style>
+        
+        <script type="text/javascript">
+        
+        </script>
+        
+    </head>
+    
+    <body>
+        
+        <div id="contenedor">
+            <div id="central">
+                <div id="login">
+                    <div class="titulo">
+                        Registro
+                    </div>
+                    <form class="form-signin" method="POST">
+        {% csrf_token %}
+
+        <label for="id_email" class="sr-only">Email</label>
+        <input type="email" name="email" id="id_email" class="form-control" placeholder="Email" required autofocus>
+        <label for="id_username" class="sr-only">Nombre de usuario</label>
+        <input type="text" name="username" id="id_username" class="form-control" placeholder="Nombre de usuario" required>
+        <label for="inputPassword" class="sr-only">Contraseña</label>
+        <input type="password" name="password1" id="id_password" class="form-control" placeholder="Contraseña" required>
+        <label for="inputPassword" class="sr-only">Repetir contraseña</label>
+        <input type="password" name="password2" id="id_password_confirmation" class="form-control" placeholder="Repetir contraseña" required>
+        <div class="checkbox mb-3"></div>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse</button>
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+    </form>
+                    <div class="pie-form">
+                        <a class="btn btn-primary" href="{%url 'apps.usuario:login'%}">login</a>
+                    </div>
+                </div>
+                <div class="inferior">
+                    <a href="{% url 'index' %}">Continuar sin Registrarse</a>
+                </div>
+            </div>
+        </div>
+            
+    </body>
+</html>

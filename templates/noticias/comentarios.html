@@ -1,0 +1,12 @@
+{% load static %}
+
+{% block agregarcomentario %}
+
+<h3>Escribe un comentario</h3>
+        <form method="post" style="margin-top: 1.3em;">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <a class="btn btn-primary  btn-lg" href="{% url 'agregar_comentario' id=noticia.id %}">Enviar Comentario</a>
+        </form>
+
+{% endblock contenido %}

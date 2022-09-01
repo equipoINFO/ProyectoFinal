@@ -20,7 +20,7 @@ text-align: var(--bs-body-text-align);">Agenda de Eventos</h2>
         <h3 class="mb-0">{{evento.titulo}}</h3>
         <div class="mb-1 text-muted"><span class="fw-bold">Fecha:</span> {{evento.fecha}}</div>
         <p class="lead">{{evento.contenido|truncatechars:140}}</p>
-        <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {{evento.categorias}}</h4>
+        <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {% for cat in evento.categorias.all %} - {{cat.nombre}}{% endfor%}</h4>
         <h4 class="mb-1"><span class="fw-bold">Lugar:</span> {{evento.lugar}}</h4>
         <h4 class="mb-1"><span class="fw-bold">Modalidad:</span> {{evento.modalidad}}</h4>
         <h4 class="mb-1"><span class="fw-bold">Precio:</span> {{evento.precio}}</h4>

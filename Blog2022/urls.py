@@ -19,20 +19,29 @@ from django.urls import re_path as url
 from django.conf.urls.static import static
 from django.conf import settings
 from apps.contacto_app import views
-from apps.noticias_app import views
+from apps.recursos_app import views
 from apps.eventos_app import views
+from apps.noticias_app import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # vista basada en función <-- borrar al terminar
-    #siempre hay q llamar aca para que pida la solicitud de info en la parte de 'views' <-- borrar al terminar
-    # path('', views.base, name='base')  <-- borrar al terminar
-    path('inicio', views.index, name='index'),
+
+    path('', views.index, name='index'),
     path('contacto', views.contacto, name='contacto'),
     path('nosotros', views.nosotros, name='nosotros'),
     path('eventos', views.eventos, name='eventos'),
     path('eventos/<int:id>/', views.eventosdetalle, name='eventosdetalle'),
     path('noticias', views.noticias, name='noticias'),
     path('noticias/<int:id>/', views.noticiasdetalle, name='noticiasdetalle'),
+    path("noticias/new", views.CrearNoticiaView.as_view(), name='CrearNoticiaView'),
+    path('comentario/<int:id>/approve', views.comment_approve, name='comment_approve'),
+    path('comentario/<int:id>/remove', views.comment_remove, name='comment_remove'),
+    path('noticia/<int:id>/comentar', views.agregar_comentario, name='agregar_comentario'),
+    path('recursos', views.recursosindex, name='recursosindex'),
+    path('imagenes', views.imagenesindex, name='Imágenes'),
+    path('foto',views.foto,name='foto'),
+    path('videos',views.videosvindex,name='Videos'),
+    path('video',views.video,name='video'),
+    path('registration/', include('apps.usuario.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)

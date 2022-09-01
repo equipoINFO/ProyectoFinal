@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <body>
+        <article class="container"><br>
+            <center><h2>Videos</h2></center>
+            <hr class="featurette-divider">
+        </article>
+        <div class="row row-cols-4">
+            <div class="col">
+                <figure class="mx-auto" style="width: 300px;">
+                    <center><a href="{% url 'video' %}"><video src="Videos/custodio bustamante - el arbol ya fue plantado.mp4" 
+                        style="width: 75%;border-radius: 20px;" 
+                        class="img-thumbnail" 
+                        alt="..."></a></center>
+                    <p><center>Custodio Bustamante - el árbol ya fue plantado</center></p>
+                </figure>
+            </div>
+        </div>
+    </body>
+{% endblock contenido %}

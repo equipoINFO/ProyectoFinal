@@ -1,9 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http.response import Http404
 from .models import Contacto
 from apps.eventos_app.models import Evento
 from apps.noticias_app.models import Noticia, Comentario, Categoria
+from apps.recursos_app.models import Imagen,Video,Categoria
+from django.contrib.auth.decorators import login_required
+from apps.noticias_app.forms import NoticiaForm, CommentarioForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import( CreateView)
 
 # Create your views here.
 
@@ -72,9 +77,100 @@ def noticiasdetalle(request, id):
     except Noticia.DoesNotExist:
         raise Http404('La noticia solicitada no existe.')
 
+    form=CommentarioForm()
+    if request.method=='POST':
+        form = CommentarioForm(request.POST)
+        if form.isvalid():
+            print("Validacion exitosa!")
+            print("Autor:" + form.cleaned_data["autor"])
+            print("Comentario:" + form.cleaned_data["cuerpo_comentario"])
+            comment = Comentario(
+                author=form.cleaned_data["autor"],
+                comment_body=form.cleaned_data["cuerpo_comentario"],
+                noticia=datanoticia
+            )
+            comment.save()
+
     context = {
         "noticia": datanoticia,
-        "comentarios": lista_comentarios
+        "comentarios":lista_comentarios
     }
 
     return render (request, 'detalleNoticia.html',context)
+
+class CrearNoticiaView(CreateView, LoginRequiredMixin):
+    login_url= '/login'
+    #redirect_field_name='index_detail.html'
+
+    form_class = NoticiaForm
+
+    model = Noticia
+
+
+    def blog_categoria(request, categoria):
+        posts = Noticia.objects.filter(
+            categories__name__contains=categoria
+        ).order_by(
+            'creado'
+        )
+        context = {
+            "categoria": categoria,
+            "posts": posts
+        }
+        return render(request, "blog_categoria.html", context)
+
+
+@login_required
+def post_publish(request, id):
+    try:
+        noticias =Noticia.objects.get(id =id)
+    except Noticia.DoesNotExist:
+        raise Http404('No existe la noticia')
+
+    Noticia.publish()
+    return redirect('detalle-noticia', id=id)
+
+
+@login_required
+def comment_approve(request, id):
+    try:
+        comentarios =Comentario.objects.get(id =id)
+    except Comentario.DoesNotExist:
+        raise Http404('Comentario no existe')
+    comentarios.approve()
+    return redirect('detalle-noticia', id=comentarios.noticia.id)
+
+
+@login_required
+def comment_remove(request, id):
+    try:
+        comentario =Comentario.objects.get(id =id)
+    except Comentario.DoesNotExist:
+        raise Http404('Comentario no existe')
+    noticia_id = comentario.noticia.id
+    comentario.delete()
+    return redirect('noticia_detalle', id=noticia_id)
+
+
+def recursosindex(request):
+    return render(request,'recursos-index.html',{})
+
+def imagenesindex(request):
+    lista_imagenes = Imagen.objects.all().order_by('publicado')
+    context = {
+    "imagenes": lista_imagenes,
+    }
+    return render(request,'imagenes-index.html',context)
+
+def videosvindex(request):
+    lista_videos = Video.objects.all().order_by('publicado')
+    context = {
+    "videos": lista_videos,
+    }
+    return render(request,'videos-index.html',context)
+
+def foto(request):
+    return render(request,'foto.html',{})
+
+def video(request):
+    return render(request,'video.html',{})

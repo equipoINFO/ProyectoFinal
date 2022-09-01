@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <body>
+        <hr class="featurette-divider"><br>
+        <center><a href="{% url 'Videos' %}" class="btn btn-primary">Volver Atrás</a></center>
+        <center>
+        <video style="width: 800px;margin-top: 50px;" controls>
+            <source src="videos/custodio bustamante - el arbol ya fue plantado.mp4">
+        </video>
+        </center>
+        <hr class="featurette-divider">
+    </body>
+{% endblock contenido %}
