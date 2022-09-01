@@ -18,36 +18,32 @@
 
 
     <hr>
-    {% if user.is_authenticated %}
-        <h3>Escribe un comentario</h3>
-        <form method="post" style="margin-top: 1.3em;">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <a class="btn btn-primary  btn-lg" href="{% url 'agregar_comentario' id=noticia.id %}">Enviar Comentario</a>
-        </form>
-    {% else %}
-    <p>Para agregar comentarios debe autenticarse <br>
-        <a href="{% url 'apps.blog_auth:login' %}">Iniciar sesión</a>
-        <a href="{% url 'apps.blog_auth:register' %}">Registrarse</a></p>
-    {% endif %}
-    <hr>
-    <div class="container">
-        {% for comentario in noticia.comentario.all %}
-            <br>
-            {% if user.is_authenticated or comment.approved_comment %}
-
-                {{ comentario.creado }}
-                {% if not comment.approved_comment %}
-                    <a class="btn btn-default" href="{% url 'comment_remove' id=comentario.id %}"><span class="glyphicon glyphicon-remove"></span></a>
-                    <a class="btn btn-default" href="{% url 'comment_approve' id=comentario.id %}"><span class="glyphicon glyphicon-ok"></span></a>
-                {% endif %}
-                <p>{{ cuerpo_comentario.text|safe|linebreaks }}</p>
-                <p>Posted by: <strong>{{ comentario.autor }}</strong></p>
-            {% endif %}
-            {% empty %}
-            <p>No hay comentarios.</p>
+    <article class='my-3 p-3 bg-body rounded shadow-sm'>
+        <h6 class="border-bottom pb-2 mb-0">Comentarios</h6>
+        {% for comentario in comentarios %}
+        <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+            <div>
+                <strong class="text-gray-dark"><p>{{ comentario.autor}}<span> - {{ comentario.creado}}</span></strong>
+            </div>
+            <span class="d-block">{{ comentario.cuerpo_comentario}}</span>
+        </div>
         {% endfor %}
-    </div>
+        {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            {{formulario.as_p}}
+            <button type="submit" class="btn btn-primary">
+            Comentar
+            </button>
+        </form>
+        {% else %}
+        <div><br>
+            <p>
+                <a class="btn btn-success" href="{%url 'apps.usuario:login'%}">Iniciar Sesión para comentar</a>
+            </p>
+        </div>
+        </article>
+        {% endif %}
     <hr class="featurette-divider">
 </section>
 {% endblock contenido %}

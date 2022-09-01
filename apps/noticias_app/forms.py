@@ -13,17 +13,9 @@ class NoticiaForm(forms.ModelForm):
             'contenido': forms.Textarea(attrs={'class': 'editable medium-editor-textarea postcontent'}),
         }
 
-class CommentarioForm(forms.Form):
+class ComentarioForm(forms.Form):
         model = Comentario
-        fields = ('autor', 'cuerpo_comentario',)
-
-        autor = forms.CharField(
-            max_length=60,
-            widget=forms.TextInput(attrs={
-                "class": "form-control",
-                "placeholder": "Ingresa tu nombre"
-            })
-        )
+        fields = ('cuerpo_comentario',)
         cuerpo_comentario = forms.CharField(widget=forms.Textarea(
             attrs={
                 "class": "form-control comment-textarea",
