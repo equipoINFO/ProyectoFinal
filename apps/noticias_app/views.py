@@ -1,11 +1,7 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http.response import Http404
-from django.shortcuts import get_object_or_404
 from .models import Noticia,Categoria,Comentario
-from apps.contacto_app.models import Contacto
 from apps.eventos_app.models import Evento,Categoria
-from apps.recursos_app.models import Imagen,Video,Categoria
 from django.contrib.auth.decorators import login_required
 from .forms import NoticiaForm, ComentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -21,22 +17,6 @@ def index(request):
       "eventos": lista_eventos,
    }
    return render(request, 'index.html', context)
-
-
-def contacto(request):
-      if request.method == "POST":
-         contacto = Contacto()
-         nombre = request.POST.get('name')
-         email = request.POST.get('email')
-         motivo = request.POST.get('subject')
-         mensaje = request.POST.get('message')
-         contacto.nombre = nombre
-         contacto.email = email
-         contacto.motivo = motivo
-         contacto.mensaje = mensaje
-         contacto.save()
-         return render(request, 'contactos.html')
-      return render(request, 'contacto.html')
 
 
 def noticias(request):
@@ -128,47 +108,3 @@ def comment_remove(request, id):
 
 def nosotros(request):
       return render(request, 'nosotros.html')
-
-def eventos(request):
-   lista_eventos = Evento.objects.all().order_by('fecha')
-   context = {
-      "eventos": lista_eventos,
-      "MEDIA_ROOT": '',
-   }
-   return render(request, 'eventos.html', context)
-
-def eventosdetalle(request, id):
-   try:
-      dataevento = Evento.objects.get(id=id)
-   except Evento.DoesNotExist:
-      raise Http404('El evento solicitada no existe.')
-
-   context = {
-      "evento": dataevento,
-      "MEDIA_ROOT": '',
-   }
-
-   return render (request, 'detalleEvento.html',context)
-
-def recursosindex(request):
-   return render(request,'recursos-index.html',)
-
-def imagenesindex(request):
-   lista_imagenes = Imagen.objects.all().order_by('publicado')
-   context = {
-   "imagenes": lista_imagenes,
-   }
-   return render(request,'imagenes-index.html',context)
-
-def videosvindex(request):
-   lista_videos = Video.objects.all().order_by('publicado')
-   context = {
-   "videos": lista_videos,
-   }
-   return render(request,'videos-index.html',context)
-
-def foto(request):
-   return render(request,'foto.html',)
-
-def video(request):
-   return render(request,'video.html',)
