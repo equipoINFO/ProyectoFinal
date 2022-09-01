@@ -1,15 +1,18 @@
 {% extends "base.html" %}
 {% block contenido %}
-<section class="container" style="margin-top: 5%;">
-    <form method="POST" action="{% url "apps.usuario:login" %}" class="form-signin">
+<main class="container">
+<br><section class="form-signin m-auto text-center" style="width: 300px;">
+    <form method="POST" action="{% url 'apps.usuario:login' %}" class="form-signin">
         {% csrf_token %}
-        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1><br>
+        <div class="container">
         <label for="id_username" class="sr-only">Usuario</label>
-        <input type="text" id="id_username" class="form-control" placeholder="Usuario" name="username" required autofocus>
+        <input type="text" id="id_username" class="form-control" placeholder="Usuario" name="username" required autofocus><br>
         <label for="id_password" class="sr-only">Contraseña</label>
         <input type="password" id="id_password" class="form-control" placeholder="Contraseña" name="password" required>
+        </div>
         <div class="checkbox mb-3"></div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <button class="btn btn-success" type="submit">Iniciar Sesión</button>
         {% if form.errors %}
             {% for field in form %}
                 {% for error in field.errors %}
@@ -25,5 +28,6 @@
             {% endfor %}
         {% endif %}
     </form>
-</section>
+</section><br>
+</main>
 {% endblock %}

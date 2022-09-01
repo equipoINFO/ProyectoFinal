@@ -18,29 +18,29 @@ from django.urls import include, path
 from django.urls import re_path as url
 from django.conf.urls.static import static
 from django.conf import settings
-from apps.contacto_app import views
-from apps.recursos_app import views
-from apps.eventos_app import views
-from apps.noticias_app import views
+from apps.contacto_app import views as viewsContacto
+from apps.recursos_app import views as viewsRecursos
+from apps.eventos_app import views as viewsEventos
+from apps.noticias_app import views as viewsNoticias
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.index, name='index'),
-    path('contacto', views.contacto, name='contacto'),
-    path('nosotros', views.nosotros, name='nosotros'),
-    path('eventos', views.eventos, name='eventos'),
-    path('eventos/<int:id>/', views.eventosdetalle, name='eventosdetalle'),
-    path('noticias', views.noticias, name='noticias'),
-    path('noticias/<int:id>/', views.noticiasdetalle, name='noticiasdetalle'),
-    path("noticias/new", views.CrearNoticiaView.as_view(), name='CrearNoticiaView'),
-    path('comentario/<int:id>/approve', views.comment_approve, name='comment_approve'),
-    path('comentario/<int:id>/remove', views.comment_remove, name='comment_remove'),
-    path('recursos', views.recursosindex, name='recursosindex'),
-    path('imagenes', views.imagenesindex, name='Imágenes'),
-    path('foto',views.foto,name='foto'),
-    path('videos',views.videosvindex,name='Videos'),
-    path('video',views.video,name='video'),
+    path('', viewsNoticias.index, name='index'),
+    path('contacto', viewsContacto.contacto, name='contacto'),
+    path('nosotros', viewsNoticias.nosotros, name='nosotros'),
+    path('eventos', viewsEventos.eventos, name='eventos'),
+    path('eventos/<int:id>/', viewsEventos.eventosdetalle, name='eventosdetalle'),
+    path('noticias', viewsNoticias.noticias, name='noticias'),
+    path('noticias/<int:id>/', viewsNoticias.noticiasdetalle, name='noticiasdetalle'),
+    path("noticias/new", viewsNoticias.CrearNoticiaView.as_view(), name='CrearNoticiaView'),
+    path('comentario/<int:id>/approve', viewsNoticias.comment_approve, name='comment_approve'),
+    path('comentario/<int:id>/remove', viewsNoticias.comment_remove, name='comment_remove'),
+    path('recursos', viewsRecursos.recursosindex, name='recursosindex'),
+    path('imagenes', viewsRecursos.imagenesindex, name='Imágenes'),
+    path('foto',viewsRecursos.foto,name='foto'),
+    path('videos',viewsRecursos.videosvindex,name='Videos'),
+    path('video',viewsRecursos.video,name='video'),
     path('registration/', include('apps.usuario.urls')),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT,show_indexes=True) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT,show_indexes=True)

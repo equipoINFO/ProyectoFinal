@@ -14,7 +14,7 @@
             <p>
             {{ evento.contenido|safe|linebreaksbr }}
             </p>
-            <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {{evento.categorias}}</h4>
+            <h4 class="mb-1"><span class="fw-bold">Categoría:</span> {% for cat in evento.categorias.all %}  {{cat.nombre}}{% endfor%}</h4>
             <h4 class="mb-1"><span class="fw-bold">Lugar:</span> {{evento.lugar}}</h4>
             <h4 class="mb-1"><span class="fw-bold">Modalidad:</span> {{evento.modalidad}}</h4>
             <h4 class="mb-1"><span class="fw-bold">Precio:</span> {{evento.precio}}</h4>
