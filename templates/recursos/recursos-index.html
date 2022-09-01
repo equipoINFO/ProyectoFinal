@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    <body><br>
+        <center><h2>Recursos</h2></center>
+        <main>
+            <!--sección de imágenes-->
+            <section class='container'>
+              <hr class="featurette-divider">
+              <center><div class="card text-bg-dark text-end" style="width: 70%;">
+                <img src="{% static 'Imágenes/fotos/logo-fotos.jpg' %}" style="width: 50%; overflow: hidden;" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                  <h3 class="card-title">Imágenes</h3>
+                  <p class="card-text">Encontrá acá todas nuestras fotos.</p>
+                  <p class="card-text">¡Podés descargarlas!</p>
+                  <a href="{% url 'Imágenes' %}" class="btn btn-primary">Ir a ver Fotos</a>
+                </div>
+              </div></center>
+            </section><br><br>
+            <!--sección de videos-->
+            <section class="container">
+              <center><div class="card text-bg-dark text-end" style="width: 70%;">
+                <img src="{% static 'Imágenes/fotos/logo-videos.jpg' %}" style="width: 50%; overflow: hidden;" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                  <h3 class="card-title">Videos</h3>
+                  <p class="card-text">Encontrá acá todas nuestros videos.</p>
+                  <p class="card-text">¡Podés descargarlos!</p>
+                  <a href="{% url 'Videos' %}" class="btn btn-primary">Ir a ver Videos</a>
+                </div>
+              </div></center>
+            </section><br><br>
+            <!--sección de revista-->
+            <section class="container">
+              <center><div class="card text-bg-dark text-end" style="width: 70%;">
+                <img src="{% static 'Imágenes/fotos/logo-revista.jpg' %}" style="width: 50%; overflow: hidden;" class="card-img" alt="...">
+                <div class="card-img-overlay">
+                  <h3 class="card-title">Revista</h3>
+                  <p class="card-text">Acá vas a encontrar nuestra revista.</p>
+                  <p class="card-text">¡Están todas las ediciones!</p>
+                  <a href="https://issuu.com/fmnp" target="_blank" class="btn btn-primary">Ir al sitio de nuestra Revista</a>
+                </div>
+              </div></center>
+              <hr class="featurette-divider">
+            </section>
+        </main>
+    </body>
+{% endblock contenido %}

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-inse1111111111111cure-efgvd8w3llet1ju111111111111111111111111oa(55+-!i_$5sz9iva1111111111111111sfuy$e+yr9vklt1t-'
-SECRET_KEY = ''
+SECRET_KEY = 'django-insecure-efgvd8w3llet1juoa(55+-!i_$5sz9ivasfuy$e+yr9vklt1t-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'apps.noticias_app',
     'apps.contacto_app',
     'apps.eventos_app',
+    'apps.recursos_app',
+    'apps.usuario',
 ]
 
 MIDDLEWARE = [
@@ -60,11 +62,13 @@ TEMPLATE_DIR = os.path.join(os.path.dirname(BASE_DIR), 'templates')
 TEMPLATE_NOTICIAS = os.path.join(os.path.dirname(BASE_DIR), 'templates/noticias')
 TEMPLATE_CONTACTO = os.path.join(os.path.dirname(BASE_DIR), 'templates/contacto')
 TEMPLATE_EVENTOS = os.path.join(os.path.dirname(BASE_DIR), 'templates/eventos')
+TEMPLATE_RECURSOS = os.path.join(os.path.dirname(BASE_DIR), 'templates/recursos')
+TEMPLATE_AUTH = os.path.join(os.path.dirname(BASE_DIR), 'templates/registration')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR,TEMPLATE_NOTICIAS,TEMPLATE_CONTACTO, TEMPLATE_EVENTOS],
+        'DIRS': [TEMPLATE_DIR,TEMPLATE_NOTICIAS,TEMPLATE_CONTACTO, TEMPLATE_EVENTOS,TEMPLATE_RECURSOS,TEMPLATE_AUTH],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,3 +139,7 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL ='/'
+LOGOUT_REDIRECT_URL = '/'
