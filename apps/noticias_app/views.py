@@ -7,7 +7,7 @@ from apps.contacto_app.models import Contacto
 from apps.eventos_app.models import Evento,Categoria
 from apps.recursos_app.models import Imagen,Video,Categoria
 from django.contrib.auth.decorators import login_required
-from .forms import NoticiaForm, CommentarioForm
+from .forms import NoticiaForm, ComentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import( CreateView)
 
@@ -53,20 +53,29 @@ def noticiasdetalle(request, id):
    except Noticia.DoesNotExist:
       raise Http404('La noticia solicitada no existe.')
    
-#   form=CommentarioForm()
-      
+   form=ComentarioForm()
 
+   if (request.method == "POST") and (request.user.id !=None):
+      form = ComentarioForm(request.POST)
+      if form.is_valid():
+         comment = Comentario(
+            autor_id = request.user.id,
+            cuerpo_comentario = form.cleaned_data["cuerpo_comentario"],
+            noticia = datanoticia
+         )
+         comment.save()
+         return redirect("noticiasdetalle", id=datanoticia.id)
+      
    context = {
       "noticia": datanoticia,
       "comentarios":lista_comentarios,
-#      "formulario": form,
+      "formulario": form,
    }
 
    return render (request, 'detalleNoticia.html',context)
 
 class CrearNoticiaView(CreateView, LoginRequiredMixin):
    login_url= '/login'
-   #redirect_field_name='index_detail.html'
 
    form_class = NoticiaForm
 
@@ -104,7 +113,7 @@ def comment_approve(request, id):
    except Comentario.DoesNotExist:
       raise Http404('Comentario no existe')
    comentarios.approve()
-   return redirect('detalle-noticia', id=comentarios.noticia.id)
+   return redirect('noticiasdetalle', id=comentarios.noticia.id)
 
 
 @login_required
@@ -115,34 +124,10 @@ def comment_remove(request, id):
       raise Http404('Comentario no existe')
    noticia_id = comentario.noticia.id
    comentario.delete()
-   return redirect('noticia_detalle', id=noticia_id)
-
-@login_required
-def agregar_comentario(request, id):
-   datanoticia=Noticia.objects.get(id=id)
-   
-   if request.method=='POST':
-      form = CommentarioForm(request.POST)
-      if form.is_valid():
-            print("Validacion exitosa!")
-            print("Autor:" + form.cleaned_data["autor"])
-            print("Comentario:" + form.cleaned_data["cuerpo_comentario"])
-            comment = Comentario(
-            autor=form.cleaned_data["autor"],
-            cuerpo_comentario=form.cleaned_data["cuerpo_comentario"],
-            noticia=datanoticia
-            )
-            comment.save()
-            noticia_id= Noticia.id
-            return redirect('noticia_detalle', id=noticia_id)
-   else:
-      form=CommentarioForm()
-   context={"form": form,}
-   return render(request,'detalleNoticia.html',context)
+   return redirect('noticiasdetalle', id=noticia_id)
 
 def nosotros(request):
       return render(request, 'nosotros.html')
-
 
 def eventos(request):
    lista_eventos = Evento.objects.all().order_by('fecha')

@@ -6,7 +6,7 @@ from apps.eventos_app.models import Evento
 from apps.noticias_app.models import Noticia, Comentario, Categoria
 from apps.recursos_app.models import Imagen,Video,Categoria
 from django.contrib.auth.decorators import login_required
-from apps.noticias_app.forms import NoticiaForm, CommentarioForm
+from apps.noticias_app.forms import NoticiaForm, ComentarioForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import( CreateView)
 
@@ -76,31 +76,30 @@ def noticiasdetalle(request, id):
         lista_comentarios = Comentario.objects.filter(aprobado=True)
     except Noticia.DoesNotExist:
         raise Http404('La noticia solicitada no existe.')
+    
+    form=ComentarioForm()
 
-    form=CommentarioForm()
-    if request.method=='POST':
-        form = CommentarioForm(request.POST)
-        if form.isvalid():
-            print("Validacion exitosa!")
-            print("Autor:" + form.cleaned_data["autor"])
-            print("Comentario:" + form.cleaned_data["cuerpo_comentario"])
+    if (request.method == "POST") and (request.user.id !=None):
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
             comment = Comentario(
-                author=form.cleaned_data["autor"],
-                comment_body=form.cleaned_data["cuerpo_comentario"],
-                noticia=datanoticia
+            autor_id = request.user.id,
+            cuerpo_comentario = form.cleaned_data["cuerpo_comentario"],
+            noticia = datanoticia
             )
             comment.save()
+            return redirect("noticiasdetalle", id=datanoticia.id)
 
     context = {
         "noticia": datanoticia,
-        "comentarios":lista_comentarios
+        "comentarios":lista_comentarios,
+        "formulario": form,
     }
 
     return render (request, 'detalleNoticia.html',context)
 
 class CrearNoticiaView(CreateView, LoginRequiredMixin):
     login_url= '/login'
-    #redirect_field_name='index_detail.html'
 
     form_class = NoticiaForm
 
