@@ -31,3 +31,5 @@ STATICFILES_STORAGE='whitenoise.storage.CompressedStaticFilesStorage'
 
 STATIC_URL = 'https://proyectoinfogrupo20.herokuapp.com/static/'
 MEDIA_URL = 'https://proyectoinfogrupo20.herokuapp.com/media/'
+
+CSRF_TRUSTED_ORIGINS = ['https://nombredesudominio.herokuapp.com']
