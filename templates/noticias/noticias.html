@@ -19,7 +19,8 @@
                 {% for noticia in noticias %}
                 <div class="col">
                   <div class="card shadow-sm">
-                    <img src="{{MEDIA_ROOT}}/{{noticia.img}}" width="100%" height="225" alt="">                    
+                    <!--<img src="{{MEDIA_ROOT}}/{{noticia.img}}" width="100%" height="225" alt=""> #Esto es lo que va cuando es contenido dinámico-->
+                    <img src="static\Imágenes\fotos\charlafontana.jpg" width="100%" height="225" alt="">                    
                     <div class="card-body">
                       <h3 class="mb-0">{{noticia.titulo}}</h3>
                       <div class="mb-1 text-muted">{{ noticia.creado }}</div>
